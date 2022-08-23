@@ -1,38 +1,38 @@
-#define pin_r 1
-#define pin_l 2
+#define PIN_MOTOR_LEFT_DIR 1
+#define PIN_MOTOR_LEFT_PWM 2
 
 class Motor
 {
 private:
-    int _p_r, _p_l;
+    int _pin_dir, _pin_pwm;
 
 public:
-    Motor(int pin_r, int pin_l)
+    Motor(int pin_dir, int pin_pwm)
     {
-        _p_r = pin_r;
-        _p_l = pin_l;
+        _pin_dir = pin_dir;
+        _pin_pwm = pin_pwm;
 
         pinMode(_p_r, OUTPUT);
         pinMode(_p_l, OUTPUT);
     }
     void avanzar(int velocidad)
     {
-        digitalWrite(_p_r, LOW);
-        analogWrite(_p_l, velocidad);
+        digitalWrite(_pin_dir, LOW);
+        analogWrite(_pin_pwm, velocidad);
     }
     void retroceder( int velocidad)
     {
-        digitalWrite(_p_l, LOW);
-        analogWrite(_p_r, velocidad);
+        digitalWrite(_pin_dir, LOW);
+        analogWrite(_pin_pwm, velocidad);
     }
     void frenar()
     {
-        digitalWrite(_p_r, LOW);
-        digitalWrite(_p_l, LOW);
+        digitalWrite(_pin_dir, LOW);
+        digitalWrite(_pin_pwm, LOW);
     }
 };
 
-Motor *motor = new Motor(pin_r,pin_l);
+Motor *motor = new Motor(PIN_MOTOR_LEFT_DIR,PIN_MOTOR_LEFT_PWM);
 
 
 void setup(){
